@@ -19,8 +19,8 @@ node {
     }
 
     stage('Build image') {
-        sh "Building Image ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG}"
-        sh "docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG} -f ./04_onbuild//Dockerfile ."
+        sh "echo \"Building Image ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG}\""
+        sh "docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG}§ -f ./04_onbuild//Dockerfile ."
     }
 
     /* alternatywnie
