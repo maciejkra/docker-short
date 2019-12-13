@@ -19,7 +19,8 @@ node {
     }
 
     stage('Build image') {
-        sh "docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${getTag()} -f ./04_onbuild//Dockerfile ."
+        sh "Building Image ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG}"
+        sh "docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG} -f ./04_onbuild//Dockerfile ."
     }
 
     /* alternatywnie
@@ -29,7 +30,7 @@ node {
 
     /* mozna tak...
         stage('Push image') {
-            sh "docker push ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${getTag()}"
+            sh "docker push ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG}"
         }
     ale z jakiegos powodu tego nie zrobilem */
 
@@ -81,7 +82,7 @@ def imageBuild(containerName, tag){
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword){
     sh "docker login -u $dockerUser -p $dockerPassword"
-    sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
+//   sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
     sh "docker push $dockerUser/$containerName:$tag"
     echo "Image push complete"
 }
