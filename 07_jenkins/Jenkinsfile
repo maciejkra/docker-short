@@ -19,7 +19,7 @@ node {
     }
 
     stage('Build image') {
-        shx("docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${getTag()} -f ./04_onbuild//Dockerfile .")
+        sh "docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${getTag()} -f ./04_onbuild//Dockerfile ."
     }
 
     /* alternatywnie
@@ -29,7 +29,7 @@ node {
 
     /* mozna tak...
         stage('Push image') {
-            shx("docker push ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${getTag()}")
+            sh "docker push ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${getTag()}"
         }
     ale z jakiegos powodu tego nie zrobilem */
 
