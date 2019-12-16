@@ -1,8 +1,15 @@
 version: '3'
 services:
-  web:
-    build: .
+  api:
+    image: krajewskim/python-api
     ports:
-    - "85:80"
+    - "5002:5002"
+    environment: 
+    - REDIS_HOST=redis
+    depends_on: 
+    - redis
   redis:
     image: "redis:alpine"
+    volumes: 
+
+    

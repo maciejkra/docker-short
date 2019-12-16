@@ -1,9 +1,9 @@
-def CONTAINER_NAME="obraz"
+def CONTAINER_NAME="python-api"
 def CONTAINER_TAG="latest"
 def DOCKER_HUB_USER="krajewskim"
 
 def servers = [ "SERVER_1" : [ ip:"10.0.0.144" ],
-                "SERVER_2": [ ip:"64.225.0.103" ]
+                "SERVER_2": [ ip:"3.120.133.24" ]
 ]
 def serverList = servers.keySet() as List
 
@@ -20,7 +20,7 @@ node {
 
     stage('Build image') {
         sh "echo \"Building Image ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG}\""
-        sh "docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG}§ -f ./04_onbuild//Dockerfile ."
+        sh "docker build -t ${DOCKER_HUB_USER}/${CONTAINER_NAME}:${CONTAINER_TAG} -f ./04_onbuild/Dockerfile ."
     }
 
     /* alternatywnie
@@ -49,7 +49,7 @@ node {
                                 choices: serverList)
                 ]
 
-                env.SSH_USER = "root"
+                env.SSH_USER = "ubuntu"
                 env.TARGET_IP = servers[env.TARGET_SERVER]['ip']
             }
         }
